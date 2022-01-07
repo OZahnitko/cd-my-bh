@@ -1,0 +1,9 @@
+name: shoor
+on: push
+jobs:
+  build:
+    name: Build Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Give me hash
+        run: echo $GITHUB_SHA

@@ -1,11 +1,34 @@
 version: 0.0
 os: linux
 hooks:
-  BeforeInstall:
-    - location: scripts/hello
+  ApplicationStop:
+    - location: scripts/applicationStop
       timeout: 300
       runas: root
+  DownloadBundle:
+    - location: scripts/downloadBundle
+      timeout: 300
+      runas: root
+  BeforeInstall:
+    - location: scripts/beforeInstall
+      timeout: 300
+      runas: root
+  Install:
+    - location: scripts/install
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: scripts/afterInstall
+      timeout: 300
+      runas: 300
   ApplicationStart:
-    - location: scripts/start
+    - location: scripts/applicationStart_1
+      timeout: 300
+      runas: root
+    - location: scripts/applicationStart_2
+      timeout: 300
+      runas: root
+  ValidateService:
+    - location: scripts/validateService
       timeout: 300
       runas: root

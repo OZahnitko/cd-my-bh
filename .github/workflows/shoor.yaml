@@ -73,7 +73,7 @@ jobs:
       - name: Move cache
         run: |
           rm -rf /tmp/.build-cache
-          mv /tmp/.build-cache-new /tmp/.build-cache
+          mv /tmp/.buildx-cache-new /tmp/.build-cache
   aws_deployment:
     name: Create AWS Codedeploy Deployment
     runs-on: ubuntu-latest

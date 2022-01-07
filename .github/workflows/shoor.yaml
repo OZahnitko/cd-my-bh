@@ -36,6 +36,13 @@ jobs:
         run: |
           echo ${{ steps.prep.outputs.tagged_image }}
           echo ${{ steps.prep.outputs.tag }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Docker Hub Login
+        uses: docker/login@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
   aws_deployment:
     name: Create AWS Codedeploy Deployment
     runs-on: ubuntu-latest

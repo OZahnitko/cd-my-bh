@@ -20,7 +20,7 @@ hooks:
   AfterInstall:
     - location: scripts/afterInstall
       timeout: 300
-      runas: 300
+      runas: root
   ApplicationStart:
     - location: scripts/applicationStart_1
       timeout: 300

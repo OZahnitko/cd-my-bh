@@ -1,23 +1,43 @@
 name: shoor
 on: push
 jobs:
-  build:
-    name: Build Image
+  # build:
+  #   name: Build Image
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #     AWS_REGION: ${{ secrets.AWS_REGION }}
+  #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #   steps:
+  #     - name: Give me hash
+  #       run: |
+  #         echo $GITHUB_SHA
+  #         echo ${{ github.event.repository.name }}
+  #     - name: Create deployment
+  #       run: |
+  #         aws deploy create-deployment \
+  #           --application-name CD-my-BH \
+  #           --deployment-config-name CodeDeployDefault.OneAtATime \
+  #           --deployment-group-name CD-my-BH-dg \
+  #           --description "CLI Test" \
+  #           --github-location repository="OZahnitko/${{ github.event.repository.name }}",commitId=$GITHUB_SHA
+  build_image:
+    name: Build Docker Image
     runs-on: ubuntu-latest
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_REGION: ${{ secrets.AWS_REGION }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     steps:
-      - name: Give me hash
+      - name: Prepare
+        id: prep
         run: |
-          echo $GITHUB_SHA
-          echo ${{ github.event.repository.name }}
-      - name: Create deployment
+          TAG=$(echo $GITHUB_SHA | head -c7)
+          IMAGE="ozahnitko/cd-my-bh"
+          echo ::set-output name=tagged_image::${IMAGE}:${TAG}
+          echo ::set-output name=tag::${TAG}
+      - name: See what prep did
         run: |
-          aws deploy create-deployment \
-            --application-name CD-my-BH \
-            --deployment-config-name CodeDeployDefault.OneAtATime \
-            --deployment-group-name CD-my-BH-dg \
-            --description "CLI Test" \
-            --github-location repository="OZahnitko/${{ github.event.repository.name }}",commitId=$GITHUB_SHA
+          echo ${{ steps.prep.output.tagged_image }}
+          echo ${{ steps.prep.output.tag }}
+  aws_deployment:
+    name: Create AWS Codedeploy Deployment
+    runs-on: ubuntu-latest
+    run: |
+      echo And here is where I will do a deployment.

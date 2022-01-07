@@ -3,6 +3,7 @@ resource "aws_instance" "CD" {
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.deployer_key.key_name
   vpc_security_group_ids = [aws_security_group.ec2_cd.id]
+  iam_instance_profile   = data.aws_iam_instance_profile.cd.name
 
   user_data = <<USER_DATA
     #!/bin/bash

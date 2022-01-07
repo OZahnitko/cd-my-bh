@@ -2,6 +2,10 @@ data "aws_iam_instance_profile" "ecs_profile" {
   name = "ecsInstanceRole"
 }
 
+data "aws_iam_instance_profile" "cd" {
+  name = "EC2CodeDeploy"
+}
+
 data "aws_subnets" "subnets" {
   filter {
     name   = "vpc-id"

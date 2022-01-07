@@ -8,4 +8,4 @@ jobs:
       - name: Give me hash
         run: |
           echo $GITHUB_SHA
-          echo ${{ github.event.repository.name }}
+          echo ${{ github.event.repository }}

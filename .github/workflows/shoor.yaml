@@ -39,5 +39,7 @@ jobs:
   aws_deployment:
     name: Create AWS Codedeploy Deployment
     runs-on: ubuntu-latest
-    run: |
-      echo And here is where I will do a deployment.
+    steps:
+      - name: Dummy step
+        run: |
+          echo And here is where I will do a deployment.

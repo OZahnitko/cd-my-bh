@@ -1,0 +1,7 @@
+#!/bin/bash
+aws deploy create-deployment \
+    --application-name CD-my-BH \
+    --deployment-config-name CodeDeployDefault.OneAtATime \
+    --deployment-group-name CD-my-BH-dg \
+    --description "CLI Test" \
+    --github-location repository="OZahnitko/cd-my-bh",commitId="db356c6d04281c4c8a592e36c027b46de9afa4b5"

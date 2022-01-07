@@ -6,4 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Give me hash
-        run: echo $GITHUB_SHA
+        run: |
+          echo $GITHUB_SHA
+          echo ${{ github.event.repository.name }}

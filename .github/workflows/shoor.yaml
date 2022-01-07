@@ -81,3 +81,4 @@ jobs:
       - name: Dummy step
         run: |
           echo And here is where I will do a deployment.
+          echo yes

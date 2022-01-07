@@ -4,4 +4,4 @@ aws deploy create-deployment \
     --deployment-config-name CodeDeployDefault.OneAtATime \
     --deployment-group-name CD-my-BH-dg \
     --description "CLI Test" \
-    --github-location repository="OZahnitko/cd-my-bh",commitId="db356c6d04281c4c8a592e36c027b46de9afa4b5"
+    --github-location repository="OZahnitko/cd-my-bh",commitId="f4a11718c3e05b02ef4780aab658ba7b130191ac"

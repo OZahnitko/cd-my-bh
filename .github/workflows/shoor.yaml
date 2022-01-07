@@ -34,8 +34,8 @@ jobs:
           echo ::set-output name=tag::${TAG}
       - name: See what prep did
         run: |
-          echo ${{ steps.prep.output.tagged_image }}
-          echo ${{ steps.prep.output.tag }}
+          echo "${{ steps.prep.output.tagged_image }}"
+          echo "${{ steps.prep.output.tag }}"
   aws_deployment:
     name: Create AWS Codedeploy Deployment
     runs-on: ubuntu-latest
